@@ -1,0 +1,39 @@
+[
+    {
+        "fecha": "2026-04-16",
+        "cliente": "1",
+        "codigoMesa": "2",
+        "productos": [
+            {
+                "codigo": "1",
+                "cantidad": "12"
+            },
+            {
+                "codigo": "2",
+                "cantidad": "12"
+            }
+        ]
+    },
+    {
+        "fecha": "2026-04-16",
+        "cliente": "1",
+        "codigoMesa": "2",
+        "productos": [
+            {
+                "codigo": "3",
+                "cantidad": "33"
+            }
+        ]
+    },
+    {
+        "fecha": "2026-04-16",
+        "cliente": "1",
+        "codigoMesa": "1",
+        "productos": [
+            {
+                "codigo": "1",
+                "cantidad": "33"
+            }
+        ]
+    }
+]
