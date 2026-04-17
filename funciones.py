@@ -1,7 +1,6 @@
 import json
 import csv
-from datetime import datetime
-fecha = datetime.now
+import datetime
 def menuPrincipal():
     print("---------------------------------------")
     print("SISTEMA DE FACRURACION RESTAURANTE ACME")
@@ -99,44 +98,39 @@ def generarReporteCSV(facturasFiltradas, listaProductos):
     print(f"¡Listo! Archivo '{nombre_archivo}' creado.")
     print("---------------------------------------")
 
-def validarRangofecha (inicio_fecha,fin_fecha):
-    print(inicio_fecha, fin_fecha)
+        
+def reporteElMasVendido(INICIO, FIN):
     todas_las_facturas = leerArchivo("factura.json")    
     facturas_seleccionadas = []
     for factura in todas_las_facturas:
-        if inicio_fecha <= factura["fecha"] <= fin_fecha:
+        if INICIO <= factura["fecha"] <= FIN:
             facturas_seleccionadas.append(factura)
-    print (f"FACTURAS SELECCIONADAS {facturas_seleccionadas} ")
     if len(facturas_seleccionadas) == 0:
-        print("No se encontraron facturas en ese rango de fechas.")    
-    todas_las_facturas = leerArchivo("factura.json")
-    if len(todas_las_facturas) == 0:
-        print("Aún no hay facturas para hacer un reporte del mas vendido.")
+        print("No se encontraron facturas en ese rango de fechas.")   
+    else:
+        listaFacturas = leerArchivo("factura.json")
+        listaProductos= leerArchivo("productos.json")
+        conteo_reporte = []
+        for p in listaProductos:
+                diccionario_auxiliar = {
+                "codigo": str(p["codigo"]),"nombre" : str(p["nombre"]),
+                "vendidos": 0          
+                }
+                conteo_reporte.append(diccionario_auxiliar)
+        for factura in listaFacturas:
+            for item in factura["productos"]:
+                codigo_vendido = str(item["codigo"]) 
+                cantidad_vendida = int(item["cantidad"])
+                
+                for producto_conteo in conteo_reporte:
+                    if producto_conteo["codigo"] == codigo_vendido:
+                        producto_conteo["vendidos"] = producto_conteo["vendidos"] + cantidad_vendida
+                        break 
+        lista_ordenada = sorted(conteo_reporte, key= lambda x: x["vendidos"])
+        print("\n---------- El Producto mas vendido  ----------")
+        print (lista_ordenada[-1])
+        acceso = (lista_ordenada[-1])
+        acceso["Fecha"]= datetime.datetime.now().strftime("%Y-%m-%d")
+        guardarArchivo("ElMasVendido.json",acceso)
+        print("-------------------------------------------------------")
     
-
-def reporteElMasVendido(INICIO, FIN):
-   # validarRangofecha(INICIO, FIN )
-    listaFacturas = leerArchivo("factura.json")
-    listaProductos= leerArchivo("productos.json")
-    conteo_reporte = []
-    for p in listaProductos:
-            diccionario_auxiliar = {
-            "codigo": str(p["codigo"]),"nombre" : str(p["nombre"]),
-            "vendidos": 0,          
-            }
-            conteo_reporte.append(diccionario_auxiliar)
-    for factura in listaFacturas:
-        for item in factura["productos"]:
-            codigo_vendido = str(item["codigo"]) 
-            cantidad_vendida = int(item["cantidad"])
-            
-            for producto_conteo in conteo_reporte:
-                if producto_conteo["codigo"] == codigo_vendido:
-                    producto_conteo["vendidos"] = producto_conteo["vendidos"] + cantidad_vendida
-                    break 
-    lista_ordenada = sorted(conteo_reporte, key= lambda x: x["vendidos"])
-    print("\n---------- El Producto mas vendido  ----------")
-    print (lista_ordenada[-1])
-    acceso = (lista_ordenada[-1])
-    guardarArchivo("ElMasVendido.json",acceso)
-    print("-------------------------------------------------------")

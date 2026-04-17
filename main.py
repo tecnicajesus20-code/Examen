@@ -102,8 +102,8 @@ while True:
         funciones.guardarArchivo("factura.json", listaFactura)
     elif opcionPrincipal == "5":
         print("--- REPORTE DE VENTAS POR FECHA ---")
-        fecha_inicio = input("Digite fecha de inicio (AAAA-MM-DD): ")
-        fecha_fin = input("Digite fecha de fin (AAAA-MM-DD): ")
+        fecha_inicio = ( input("Digite fecha de inicio (AAAA-MM-DD): "))
+        fecha_fin = (input("Digite fecha de fin (AAAA-MM-DD): "))
         
         todas_las_facturas = funciones.leerArchivo("factura.json")
         
