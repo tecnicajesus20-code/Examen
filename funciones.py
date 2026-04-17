@@ -57,7 +57,7 @@ def registrarProductos(listaProductos):
         "iva":input("digite iva: ")
     }
     listaProductos.append(diccionarioProductos)
-    guardarArchivo("productos.json",listaProductos)
+    guardarArchivo("Examen/productos.json",listaProductos)
     return listaProductos
     
 def registrarMesas(listaMesas):
@@ -67,7 +67,7 @@ def registrarMesas(listaMesas):
         "puestos":input("digite puestos: "),
     }
     listaMesas.append(diccionarioMesas)
-    guardarArchivo("mesas.json",listaMesas)
+    guardarArchivo("Examen/mesas.json",listaMesas)
     return listaMesas
 
 def generarReporteCSV(facturasFiltradas, listaProductos):
@@ -108,8 +108,8 @@ def reporteElMasVendido(INICIO, FIN):
     if len(facturas_seleccionadas) == 0:
         print("No se encontraron facturas en ese rango de fechas.")   
     else:
-        listaFacturas = leerArchivo("factura.json")
-        listaProductos= leerArchivo("productos.json")
+        listaFacturas = leerArchivo("Examen/factura.json")
+        listaProductos= leerArchivo("Examen/productos.json")
         conteo_reporte = []
         for p in listaProductos:
                 diccionario_auxiliar = {
@@ -131,6 +131,6 @@ def reporteElMasVendido(INICIO, FIN):
         print (lista_ordenada[-1])
         acceso = (lista_ordenada[-1])
         acceso["Fecha"]= datetime.datetime.now().strftime("%Y-%m-%d")
-        guardarArchivo("ElMasVendido.json",acceso)
+        guardarArchivo("Examen/ElMasVendido.json",acceso)
         print("-------------------------------------------------------")
     

@@ -1,10 +1,10 @@
 import funciones
 import datetime
 
-listaProductos=funciones.leerArchivo("productos.json")
-listaMesas=funciones.leerArchivo("mesas.json")
-listaClientes=funciones.leerArchivo("clientes.json")
-listaFacturas = funciones.leerArchivo("factura.json")
+listaProductos=funciones.leerArchivo("Examen/productos.json")
+listaMesas=funciones.leerArchivo("Examen/mesas.json")
+listaClientes=funciones.leerArchivo("Examen/clientes.json")
+listaFacturas = funciones.leerArchivo("Examen/factura.json")
 
 while True:
     funciones.menuPrincipal()
@@ -53,7 +53,7 @@ while True:
                     "telefono":input("digite telefono: ")
                 }
                 listaClientes.append(diccionarioClientes)
-                funciones.guardarArchivo("clientes.json",listaClientes)
+                funciones.guardarArchivo("Examen/clientes.json",listaClientes)
                     
             elif(opcionClientes==2):
                 for clientes in listaClientes:
@@ -62,7 +62,7 @@ while True:
                 "saliendo...."
                 break
     elif opcionPrincipal == "4":
-        listaFactura = funciones.leerArchivo("factura.json")
+        listaFactura = funciones.leerArchivo("Examen/factura.json")
         
         listaProductosFactura = []
         print("facturacion")
@@ -99,13 +99,13 @@ while True:
         print(f"Productos: {diccionarioFactura['productos']}")
         
         listaFactura.append(diccionarioFactura)
-        funciones.guardarArchivo("factura.json", listaFactura)
+        funciones.guardarArchivo("Examen/factura.json", listaFactura)
     elif opcionPrincipal == "5":
         print("--- REPORTE DE VENTAS POR FECHA ---")
         fecha_inicio = ( input("Digite fecha de inicio (AAAA-MM-DD): "))
         fecha_fin = (input("Digite fecha de fin (AAAA-MM-DD): "))
         
-        todas_las_facturas = funciones.leerArchivo("factura.json")
+        todas_las_facturas = funciones.leerArchivo("Examen/factura.json")
         
         facturas_seleccionadas = []
         
